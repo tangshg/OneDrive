@@ -23,7 +23,7 @@ fun doStudy(student : Study){
 }
 
 class Student(val sno:String, val grade:Int ):Person(),Study{
-    //初始化类 Student 构造函数
+    //当创建类时，后面加上括号，就是初始化类 Student 构造函数
     init {
         println("sno is $sno")
         println("grade is $grade")
