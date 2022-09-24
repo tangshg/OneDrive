@@ -3,9 +3,9 @@ package learn
 //用来学习kotlin中的lambda语法
 //lambda就是可以作为参数的一段代码，最后一行会自动作为lambda表达式的返回值
 
-/*lambda表达式的基础语法
+//lambda表达式的基础语法
 fun main(){
-    var list = listOf<String>("apple","huawei","mi")
+    val list = listOf<String>("apple","huawei","mi")
 
     //使用经典java语法来遍历最长的字符串
     var maxPhone : String = ""
@@ -43,8 +43,29 @@ fun main(){
     println("maxPhone5  " + list.maxBy{it.length})
 
 
+    //1、使用 toUpperCase() 函数将字符串变为大写
+    println("UpperCase "+ list.map{it.toUpperCase()})
+
+    //2、筛选出5个字符以下的字符串
+    println("filter "+list.filter { it.length<5 })
+
+    println("upper case + filter "+ list.filter { it.length<5 }.map { it.toUpperCase() })
+
+    //3、any函数表示至少有一个满足条件，all表示所有的都满足条件
+    println("any "+ list.any { it.length<5 })
+
+    println("all "+ list.all {it.length<5})
+
+
 }
-* */
+
+
+/*函数式API的练习
+
+
+ */
+
+
 
 
 
