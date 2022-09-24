@@ -3,6 +3,7 @@ package learn
 //用来学习kotlin中的lambda语法
 //lambda就是可以作为参数的一段代码，最后一行会自动作为lambda表达式的返回值
 
+/*lambda表达式的基础语法
 fun main(){
     var list = listOf<String>("apple","huawei","mi")
 
@@ -43,6 +44,10 @@ fun main(){
 
 
 }
+* */
+
+
+
 class KtLambda {
 
 }
