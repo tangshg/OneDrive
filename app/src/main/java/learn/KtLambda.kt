@@ -56,14 +56,13 @@ fun main(){
 
     println("all "+ list.all {it.length<5})
 
-
 }
 
+//这里是Java的函数式API
 
-/*函数式API的练习
 
 
- */
+
 
 
 
