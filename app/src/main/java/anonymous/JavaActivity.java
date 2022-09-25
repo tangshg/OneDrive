@@ -19,16 +19,19 @@ public class JavaActivity {
         //2、使用匿名内部类的方法来实现点击方式
         //可以不用接口的实现类
 
-        OnClick click = new OnClick();
+    /*
+            OnClick click = new OnClick();
         click.Click(new OnClickListener() {
             @Override
             public void onClick() {
-            System.out.println("匿名内部类->点击成功");
+                System.out.println("匿名内部类->点击成功");
             }
         });
 
+
+
+     */
+
+
     }
-
-
-
 }
