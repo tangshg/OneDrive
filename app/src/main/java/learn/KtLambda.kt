@@ -61,13 +61,6 @@ fun main(){
 //这里是Java的函数式API
 
 
-
-
-
-
-
-
-
 class KtLambda {
 
 }
