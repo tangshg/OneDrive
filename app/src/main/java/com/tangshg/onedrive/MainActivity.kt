@@ -2,6 +2,7 @@ package com.tangshg.onedrive
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Button
 import android.widget.Toast
 
@@ -10,12 +11,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val button1 :Button = findViewById(R.id.button1)
 
         button1.setOnClickListener{
             Toast.makeText(this,"button1",Toast.LENGTH_LONG).show()
 
         }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main,menu)
+        return true
     }
 }
