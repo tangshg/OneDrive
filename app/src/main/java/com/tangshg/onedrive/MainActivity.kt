@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.button2.setOnClickListener{
-            var intent: Intent = Intent(this, SecondActivity::class.java)
+            val intent : Intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
         }
 
@@ -49,6 +49,21 @@ class MainActivity : AppCompatActivity() {
             intent.addCategory("com.example.activitytest.MY_CATEGORY")
             startActivity(intent)
             Toast.makeText(this,"log",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.button5.setOnClickListener{
+            //利用 intent 向下一个 activity 传递数据
+            val intent : Intent = Intent(this,SecondActivity::class.java)
+            intent.putExtra("data","data!!")
+            startActivity(intent)
+        }
+
+        binding.button6.setOnClickListener{
+            //利用 intent 向上一个 activity 来传递数据
+            val intent = Intent(this,SecondActivity::class.java)
+
+        //startActivityForResult(intent,1) -> 这个方法已经 Google 废弃
+
         }
 
     }

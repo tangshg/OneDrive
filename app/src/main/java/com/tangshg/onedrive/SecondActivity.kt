@@ -12,8 +12,11 @@ class SecondActivity : AppCompatActivity() {
 
         val binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.buttonSe.setOnClickListener{
-            Toast.makeText(this,"se",Toast.LENGTH_LONG).show()
+            val data = intent.getStringExtra("data")
+
+            Toast.makeText(this,"$data",Toast.LENGTH_LONG).show()
         }
     }
 }
