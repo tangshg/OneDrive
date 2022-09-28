@@ -25,5 +25,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="隐式 intent"/>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="text log"/>
 
 </LinearLayout>

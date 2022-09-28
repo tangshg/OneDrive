@@ -44,6 +44,12 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"隐式 intent " ,Toast.LENGTH_SHORT).show()
         }
 
+        binding.button4.setOnClickListener{
+            val intent : Intent = Intent("com.example.activitytest.ACTION_START")
+            intent.addCategory("com.example.activitytest.MY_CATEGORY")
+            startActivity(intent)
+            Toast.makeText(this,"log",Toast.LENGTH_SHORT).show()
+        }
 
     }
     // 这里只用来加载 menu 布局
