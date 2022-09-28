@@ -1,34 +1,24 @@
 package com.tangshg.onedrive
 
-import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.tangshg.onedrive.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        //setContentView(R.layout.activity_main)
+        val button1 :Button = findViewById(R.id.button1)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        //val button1 : Button = findViewById(R.id.button1)
-
-        binding.button1.setOnClickListener{
+        button1.setOnClickListener{
             Toast.makeText(this,"button1",Toast.LENGTH_LONG).show()
+
         }
 
-        //使用 ViewBinding 来加载 button
-        binding.button2.setOnClickListener(){
-            val intent = Intent(this,SecondActivity::class.java)
-            startActivity(intent)
-        }
     }
     // 这里只用来加载 menu 布局
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
