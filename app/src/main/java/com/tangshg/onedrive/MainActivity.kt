@@ -7,9 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.tangshg.onedrive.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,15 +63,60 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.button6.setOnClickListener{
-            //利用 intent 向上一个 activity 来传递数据
+        //先走一遍 startActivityForResult 熟悉流程
+        binding.button6.setOnClickListener {
             val intent = Intent(this,SecondActivity::class.java)
+            startActivityForResult(intent,1)
+        }
 
         //startActivityForResult(intent,1) -> 这个方法已经 Google 废弃
-
+        //所以使用 registerForActivityResult 来启动 Activity
+        binding.button7.setOnClickListener{
+            val intent = Intent(this,SecondActivity::class.java)
+            // ActivityResultContracts.StartActivityForResult() 是输入约束
+            // launcherCallback 是输出约束
+            resultLauncher = registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult(),launcherCallback)
+            resultLauncher.launch(
+                Intent(this,SecondActivity::class.java)
+            )
         }
 
     }
+
+    //region startActivityForResult
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode ){
+            1->if (resultCode== RESULT_OK){
+                val resultData = data?.getStringExtra("return_data")
+                Toast.makeText(this,"$resultData",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+    //endregion
+
+    //region registerForActivityResult
+    // resultLauncher 用来启动活动
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    // launcherCallback 用来接收返回至此活动的数据
+    // ActivityResultCallback 是一个接收 ActivityResult 类型
+
+
+    private val launcherCallback = ActivityResultCallback<ActivityResult>{
+            result->
+        val code = result.resultCode
+        val data = result.data
+        if (code==1){
+            println("$data")}
+        Toast.makeText(this,"$data",Toast.LENGTH_SHORT).show()
+    }
+
+    //endregion
+
+    //region menu
     // 这里只用来加载 menu 布局
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main, menu)
@@ -84,5 +134,5 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
-
+    //endregion
 }
