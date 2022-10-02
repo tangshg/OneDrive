@@ -16,7 +16,7 @@ import com.tangshg.onedrive.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+            super.onCreate(savedInstanceState)
 
         /* 原生方法加载布局
         setContentView(R.layout.activity_main)
@@ -72,14 +72,9 @@ class MainActivity : AppCompatActivity() {
         //startActivityForResult(intent,1) -> 这个方法已经 Google 废弃
         //所以使用 registerForActivityResult 来启动 Activity
         binding.button7.setOnClickListener{
-            val intent = Intent(this,SecondActivity::class.java)
-            // ActivityResultContracts.StartActivityForResult() 是输入约束
-            // launcherCallback 是输出约束
-            resultLauncher = registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult(),launcherCallback)
-            resultLauncher.launch(
-                Intent(this,SecondActivity::class.java)
-            )
+
+            myActivityResultLauncher.launch(
+                Intent(this,SecondActivity::class.java))
         }
 
     }
@@ -98,12 +93,22 @@ class MainActivity : AppCompatActivity() {
     }
     //endregion
 
+
     //region registerForActivityResult
-    // resultLauncher 用来启动活动
+
+    private val myActivityResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){
+                result->
+            val resultData = result.data?.getStringExtra("return_data")
+            Toast.makeText(this,"$resultData",Toast.LENGTH_SHORT).show()
+        }
+    /*resultLauncher 用来启动活动
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     // launcherCallback 用来接收返回至此活动的数据
     // ActivityResultCallback 是一个接收 ActivityResult 类型
 
+    //这里将接口“实例化了”，使用 lambda 来简化匿名内部类的使用
 
     private val launcherCallback = ActivityResultCallback<ActivityResult>{
             result->
@@ -113,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             println("$data")}
         Toast.makeText(this,"$data",Toast.LENGTH_SHORT).show()
     }
-
+*/
     //endregion
 
     //region menu
