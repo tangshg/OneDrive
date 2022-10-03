@@ -27,7 +27,7 @@ class SecondActivity : AppCompatActivity() {
             setResult(RESULT_OK,intent)
             finish()
         }
-
+        apply {  }
         binding.buttonSe2.setOnClickListener{
             val intent = Intent(this,MainActivity::class.java)
             intent.putExtra("return_data","register")

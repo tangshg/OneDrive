@@ -16,6 +16,7 @@ fun main(){
             println("kotlin 中的匿名内部类")
             }
         })
+
     //使用赋值给引用型变量的方法实现接口。
         val a2 : A = object : A {
             override fun doSomething() {
@@ -23,6 +24,9 @@ fun main(){
             }
         }
     a2.doSomething()
+
+    val b4 : B = B()
+    b4.myFun(a2)
 
     //原生 lambda 这里使用的内部类写法
     val a1 =  A{
