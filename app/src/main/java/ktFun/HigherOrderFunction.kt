@@ -47,5 +47,6 @@ fun main() {
     val result8 = num1AndNum2(n1, n2, {n1,n2->n1+n2})
     println("$result8")
 
+
 }
 
