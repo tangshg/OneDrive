@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         binding.button1.setOnClickListener{
            Toast.makeText(this,"button 1",Toast.LENGTH_SHORT).show()
         }
-
         binding.button2.setOnClickListener{
             val intent : Intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
