@@ -48,5 +48,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="registerForActivityResult"/>
+    <Button
+        android:id="@+id/button_uitest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="打开 UITest 页面"/>
 
 </LinearLayout>

@@ -34,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         //利用 ViewBinding 加载布局
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //region 打开 UITest 页面
+        binding.buttonUitest.setOnClickListener{
+            startActivity(Intent(this,UITest::class.java))
+        }
+
+        //endregion
         binding.button1.setOnClickListener{
            Toast.makeText(this,"button 1",Toast.LENGTH_SHORT).show()
         }
