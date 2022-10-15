@@ -1,5 +1,6 @@
 package com.tangshg.onedrive
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -24,9 +25,11 @@ class UITest : AppCompatActivity() {
                 binding.progressbarUi.visibility = View.VISIBLE
             }
             binding.progressbarUi.progress = binding.progressbarUi.progress + 10
-
         }
 
+        binding.buttonList.setOnClickListener{
+            startActivity(Intent(this,ListViewTest::class.java))
+        }
 
     }
 

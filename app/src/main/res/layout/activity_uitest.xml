@@ -22,6 +22,11 @@
         android:layout_height="wrap_content"
         android:text="button"
         android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/button_list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="open ListView"/>
 
     <EditText
         android:id="@+id/edittext_ui"
