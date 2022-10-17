@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import com.tangshg.onedrive.databinding.ActivityListViewBinding
 import com.tangshg.onedrive.databinding.ActivityUitestBinding
 import viewtest.Fruit
@@ -30,8 +31,12 @@ class ListViewTest : AppCompatActivity() {
 
         init()
         val fruitAdapter  = FruitAdapter(this,R.layout.fruit_item,fruitList)
-
         binding.listTest.adapter = fruitAdapter
+        binding.listTest.setOnItemClickListener { _, _, position, _ ->
+            val fruit = fruitList[position]
+            Toast.makeText(this, fruit.name, Toast.LENGTH_SHORT).show()
+        }
+        
      }
 
     //向 Fruit 中装填图片和文字
