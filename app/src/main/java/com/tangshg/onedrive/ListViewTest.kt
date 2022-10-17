@@ -38,7 +38,7 @@ class ListViewTest : AppCompatActivity() {
     fun init(){
         repeat(4){
             for (i in 1..7){
-                fruitList.add(Fruit("$i",R.drawable.logo))
+                fruitList.add(Fruit("$i$i$i$i$i$i$i$i$i$i$i$i$i$i$i",R.drawable.logo))
             }
         }
 
