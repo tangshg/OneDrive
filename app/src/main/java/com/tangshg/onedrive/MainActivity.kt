@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,UITest::class.java))
         }
 
+
         //endregion
         binding.button1.setOnClickListener{
            Toast.makeText(this,"button 1",Toast.LENGTH_SHORT).show()

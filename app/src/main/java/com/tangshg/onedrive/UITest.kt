@@ -31,6 +31,9 @@ class UITest : AppCompatActivity() {
             startActivity(Intent(this,ListViewTest::class.java))
         }
 
+        binding.buttonRecycler.setOnClickListener{
+            startActivity(Intent(this,RecyclerViewTest::class.java))
+        }
     }
 
 }
