@@ -3,10 +3,8 @@ package com.tangshg.onedrive
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.Toast
 import com.tangshg.onedrive.databinding.ActivityListViewBinding
-import com.tangshg.onedrive.databinding.ActivityUitestBinding
 import viewtest.Fruit
 import viewtest.FruitAdapter
 
@@ -40,7 +38,7 @@ class ListViewTest : AppCompatActivity() {
      }
 
     //向 Fruit 中装填图片和文字
-    fun init(){
+    private fun init(){
         repeat(4){
             for (i in 1..7){
                 fruitList.add(Fruit("$i$i$i$i$i$i$i$i$i$i$i$i$i$i$i",R.drawable.logo))
