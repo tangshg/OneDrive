@@ -28,6 +28,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
  */
 
+
+
     override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -35,14 +37,20 @@ override fun onCreate(savedInstanceState: Bundle?) {
 ): View? {
     val binding = FragmentLeftBinding.inflate(inflater,container,false)
 
+        if (activity != null) {
+            val mActivity = activity as MainActivity
+        }
+
     binding.leftFragButton.setOnClickListener{
         Toast.makeText(requireActivity(),"button",Toast.LENGTH_SHORT).show()
+
     }
 
     return binding.root
     //相当与 return inflater.inflate(R.layout.fragment_left,container,false)
     //inflater.inflate 和 inflater.inflate 为何需要的参数不同
 }
+
 
 
 }
