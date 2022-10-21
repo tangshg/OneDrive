@@ -34,6 +34,9 @@ class UITest : AppCompatActivity() {
         binding.buttonRecycler.setOnClickListener{
             startActivity(Intent(this,RecyclerViewTest::class.java))
         }
+        binding.fragButton.setOnClickListener{
+            startActivity(Intent(this,FragmentTestActivity::class.java))
+        }
     }
 
 }
