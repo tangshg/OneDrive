@@ -28,17 +28,20 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
  */
 
-override fun onCreateView(
+    override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
 ): View? {
-    val binding = FragmentLeftBinding.inflate(layoutInflater)
+    val binding = FragmentLeftBinding.inflate(inflater,container,false)
 
     binding.leftFragButton.setOnClickListener{
-       // Toast.makeText(mContext,"button",Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireActivity(),"button",Toast.LENGTH_SHORT).show()
     }
-    return inflater.inflate(R.layout.fragment_left,container,false)
+
+    return binding.root
+    //相当与 return inflater.inflate(R.layout.fragment_left,container,false)
+    //inflater.inflate 和 inflater.inflate 为何需要的参数不同
 }
 
 
