@@ -9,6 +9,7 @@ import viewtest.FruitAdapterRecycler
 
 class RecyclerViewTest : AppCompatActivity() {
     private val fruitList = ArrayList<Fruit>()
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -78,11 +78,13 @@ class MainActivity : AppCompatActivity() {
         //startActivityForResult(intent,1) -> 这个方法已经 Google 废弃
         //所以使用 registerForActivityResult 来启动 Activity
         binding.button7.setOnClickListener{
-
             myActivityResultLauncher.launch(
                 Intent(this,SecondActivity::class.java))
         }
 
+        binding.buttonWeb.setOnClickListener{
+            startActivity(Intent(this,WebTestActivity::class.java))
+        }
     }
 
     //region startActivityForResult
