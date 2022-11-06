@@ -10,7 +10,7 @@ class IOStream {
 }
 fun main (){
 
-
+/*
     //通过 File 类创建一个文件对象实例
     val f = File("D:/Android/AndroidProject/DB.txt")
     //通过这个流，就可以把文件读到 java 虚拟机中，即内存中
@@ -27,28 +27,52 @@ fun main (){
     //如果使用 0..length 会报错：index 16 out of bounds for length 16
     for(i in 0 until length){
         //这里打印出来的是字符对应的
-        println(buffers[i])
+        //println(buffers[i])
     }
     //每次使用过后，应该关闭文件流
     fis.close()
 
+ */
+
     //练习字符流的操作
     //获取文件实例
-    val f1 = File("d:/Android/AndroidProject/DB.txt")
+    val f1 = File("d:/Android/AndroidProject/DB1.txt")
     //获取文件字符的长度
-    val length1 = f.length().toInt()
+    val length1 = f1.length().toInt()
     //开启字符流
-    val fis1 = FileReader(f)
+    val fis1 = FileReader(f1)
+    //启用处理流
+    val reader = BufferedReader(fis1)
+    //字符数组
+    val response = StringBuilder()
+    //不适用扩展函数来操作 I/O 流
+
+    //这个函数每次读取一行数据
+    while (true){
+        val line = reader.readLine()
+        if (line==null){
+            break
+        }
+        response.append(line)
+        println(response)
+    }
+
+
+
+
+    //这里使用两个扩展函数 use 和 forEachLine
+    /*reader.use {
+        reader.forEachLine {
+            response.append(it)
+        }
+    }
+
+     */
+
     //使用 BufferedReader 方法来读取数据
-    val buffer1 = BufferedReader(fis1)
+    //val buffer1 = BufferedReader(fis1)
     //定义 String 实例，用来存放读取到的数据
     //BufferedReader.readLine 方法，每次读取一行数据
-    val s1:String = buffer1.readLine()
-    println(s1)
-
-
-
-
-
-
+    //val s1:String = buffer1.readLine()
+    //println(s1)
 }
