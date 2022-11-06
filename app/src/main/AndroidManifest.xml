@@ -14,10 +14,7 @@
         android:theme="@style/Theme.OneDrive"
         tools:targetApi="31">
         <activity
-            android:name=".NetActivity"
-            android:exported="false" />
-        <activity
-            android:name=".net.NetActivity"
+            android:name=".NetworkActivity"
             android:exported="false" />
         <activity
             android:name=".WebTestActivity"
