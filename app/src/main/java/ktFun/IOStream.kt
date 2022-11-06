@@ -49,16 +49,10 @@ fun main (){
 
     //这个函数每次读取一行数据
     while (true){
-        val line = reader.readLine()
-        if (line==null){
-            break
-        }
+        val line = reader.readLine() ?: break
         response.append(line)
         println(response)
     }
-
-
-
 
     //这里使用两个扩展函数 use 和 forEachLine
     /*reader.use {
