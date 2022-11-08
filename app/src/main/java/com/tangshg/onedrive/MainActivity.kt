@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.tangshg.onedrive.databinding.ActivityMainBinding
+import com.tangshg.onedrive.net.NetworkActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,10 +35,17 @@ class MainActivity : AppCompatActivity() {
         //利用 ViewBinding 加载布局
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.buttonNet.setOnClickListener{
+            startActivity(Intent(this,NetworkActivity::class.java))
+        }
+
         //region 打开 UITest 页面
         binding.buttonUitest.setOnClickListener{
             startActivity(Intent(this,UITest::class.java))
         }
+
+
 
 
         //endregion
@@ -80,10 +88,6 @@ class MainActivity : AppCompatActivity() {
         binding.button7.setOnClickListener{
             myActivityResultLauncher.launch(
                 Intent(this,SecondActivity::class.java))
-        }
-
-        binding.buttonWeb.setOnClickListener{
-            startActivity(Intent(this,WebTestActivity::class.java))
         }
     }
 

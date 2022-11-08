@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/APP/onedrive/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
         <entry key="..\:/Android/AndroidProject/OneDrive/app/src/main/res/layout/activity_list_view.xml" value="0.2421875" />
+        <entry key="..\:/Android/AndroidProject/OneDrive/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
         <entry key="..\:/Android/AndroidProject/OneDrive/app/src/main/res/layout/activity_network.xml" value="0.2421875" />
         <entry key="..\:/Android/AndroidProject/onedrive/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1925" />
         <entry key="..\:/Android/AndroidProject/onedrive/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1925" />
@@ -25,6 +26,7 @@
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectResources">
     <resource url="    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;  " location="$PROJECT_DIR$" />
   </component>
