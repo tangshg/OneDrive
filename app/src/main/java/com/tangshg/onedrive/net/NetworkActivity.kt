@@ -32,7 +32,7 @@ class NetworkActivity : AppCompatActivity() {
 
         thread {
             //1.获取 URL 对象
-            val url = URL("https://www.baidu.com/")
+            val url = URL("http://api.ithome.com/xml/newslist/news.xml")
             //打开链接
             val connection = url.openConnection() as HttpURLConnection
             //设置 HTTP 请求使用的方法
