@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.tangshg.onedrive.databinding.ActivityNetworkBinding
+import org.xml.sax.InputSource
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.io.StringReader
 import java.net.HttpURLConnection
 import java.net.URL
+import javax.xml.parsers.SAXParserFactory
 import kotlin.concurrent.thread
 
 class NetworkActivity : AppCompatActivity() {
@@ -54,18 +57,34 @@ class NetworkActivity : AppCompatActivity() {
                 while(true){
                     val line = reader.readLine() ?: break
                     response.append(line)
-                    showResponse(response)
-
+                    val s : String = response.toString()
+                    parseXMLWithXML(s)
+                    //showResponse(response)
                 }
+
             }
-            //将 HTTP 连接关闭
+
             connection.disconnect()
         }}
+
 
     private fun showResponse(response: StringBuilder){
         runOnUiThread{
             binding.netFrag.text = response
         }
+    }
+    //endregion
+
+
+    //region 使用 SAX 解析XML文档
+    private fun parseXMLWithXML(xmlData: String){
+
+        val factory = SAXParserFactory.newInstance()
+        val xmlReader = factory.newSAXParser().xmlReader
+        val handler = HttpHandler()
+        xmlReader.contentHandler = handler
+        //开始执行解析
+        xmlReader.parse(InputSource(StringReader(xmlData)))
     }
     //endregion
 

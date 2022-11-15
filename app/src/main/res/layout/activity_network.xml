@@ -36,8 +36,15 @@
     </LinearLayout>
 
 
-    <TextView
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <TextView
         android:id="@+id/net_frag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textDirection="inherit"/>
+    </ScrollView>
 </LinearLayout>
