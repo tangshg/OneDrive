@@ -25,6 +25,20 @@ class NetworkActivity : AppCompatActivity() {
 
         binding.buttonHttp.setOnClickListener{
             sendRequestWithHttpURLConnection()
+            //使用 Http 的网络回调接口
+            HttpUtil.sendHttpRequest(
+                "http://api.ithome.com/xml/newslist/news.xml",
+                            object:HttpCallbackListener{
+                             //这里使用的 lambda 的写法，最后参数时 lambda 表达式时
+                            override fun onFinish(response: String) {
+                                showResponse(response)
+                            }
+
+                            override fun onError(e: Exception) {
+                                TODO("Not yet implemented")
+                            }
+
+                        })
         }
 
     }
@@ -70,6 +84,12 @@ class NetworkActivity : AppCompatActivity() {
             connection.disconnect()
         }}
 
+
+    private fun showResponse(response: String){
+        runOnUiThread{
+            binding.netFrag.text = response
+        }
+    }
 
     private fun showResponse(response: StringBuilder){
         runOnUiThread{
