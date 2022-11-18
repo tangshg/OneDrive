@@ -16,10 +16,9 @@ class HttpHandler : DefaultHandler() {
 
     //这里是每个节点的元素
 
-    private lateinit var title : StringBuilder
+     var title : StringBuilder = StringBuilder()
 
     override fun startDocument() {
-        title = StringBuilder()
 
     }
 
@@ -33,7 +32,7 @@ class HttpHandler : DefaultHandler() {
         nodeName = localName
 
         //日志文件打印出当前节点名
-        Log.d("HttpHandler", "nodeName")
+        Log.d("HttpHandlerStart", nodeName)
     }
 
     override fun characters(ch: CharArray?, start: Int, length: Int) {
@@ -47,12 +46,12 @@ class HttpHandler : DefaultHandler() {
     override fun endElement(uri: String?, localName: String, qName: String?) {
 
         if("item" == localName){
-            Log.d("HttpHandler",localName)
-            title.setLength(0)
+            Log.d("HttpHandlerEnd",localName)
+            //title.setLength(0)
         }
     }
 
-    override fun endDocument() {
+    override fun endDocument()  {
 
     }
 

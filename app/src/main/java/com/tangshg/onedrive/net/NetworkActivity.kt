@@ -1,8 +1,7 @@
 package com.tangshg.onedrive.net
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.tangshg.onedrive.databinding.ActivityNetworkBinding
 import org.xml.sax.InputSource
 import java.io.BufferedReader
@@ -57,13 +56,17 @@ class NetworkActivity : AppCompatActivity() {
                 while(true){
                     val line = reader.readLine() ?: break
                     response.append(line)
-                    val s : String = response.toString()
-                    parseXMLWithXML(s)
+
                     //showResponse(response)
                 }
-
             }
+            val s : String = response.toString()
+            parseXMLWithXML(s)
 
+            val parserResult = HttpHandler()
+            //val parserResultString : StringBuilder = parserResult.title
+
+            //showResponse()
             connection.disconnect()
         }}
 
@@ -85,6 +88,7 @@ class NetworkActivity : AppCompatActivity() {
         xmlReader.contentHandler = handler
         //开始执行解析
         xmlReader.parse(InputSource(StringReader(xmlData)))
+
     }
     //endregion
 
