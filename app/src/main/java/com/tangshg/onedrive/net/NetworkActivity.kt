@@ -24,7 +24,7 @@ class NetworkActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonHttp.setOnClickListener{
-            sendRequestWithHttpURLConnection()
+            //sendRequestWithHttpURLConnection()
             //使用 Http 的网络回调接口
             HttpUtil.sendHttpRequest(
                 "http://api.ithome.com/xml/newslist/news.xml",
@@ -39,6 +39,15 @@ class NetworkActivity : AppCompatActivity() {
                             }
 
                         })
+        }
+        binding.buttonOkhttp.setOnClickListener{
+            OkHttpUtil.sendOkHttpRequest("http://api.ithome.com/xml/newslist/news.xml",
+            object :OkHttpCallbackListener{
+                override fun onFinish(response: String) {
+                    showResponse(response)
+                }
+            })
+
         }
 
     }
