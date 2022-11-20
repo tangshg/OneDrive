@@ -1,14 +1,18 @@
 package com.tangshg.onedrive.net
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.tangshg.onedrive.databinding.ActivityNetworkBinding
 import org.xml.sax.InputSource
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.StringReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.Collections.list
 import javax.xml.parsers.SAXParserFactory
 import kotlin.concurrent.thread
 
@@ -23,32 +27,70 @@ class NetworkActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        binding.buttonHttp.setOnClickListener{
+        binding.buttonHttp.setOnClickListener {
             //sendRequestWithHttpURLConnection()
             //使用 Http 的网络回调接口
             HttpUtil.sendHttpRequest(
                 "http://api.ithome.com/xml/newslist/news.xml",
-                            object:HttpCallbackListener{
-                             //这里使用的 lambda 的写法，最后参数时 lambda 表达式时
-                            override fun onFinish(response: String) {
-                                showResponse(response)
-                            }
+                object : HttpCallbackListener {
+                    //这里使用的 lambda 的写法，最后参数时 lambda 表达式时
+                    override fun onFinish(response: String) {
+                        showResponse(response)
+                    }
 
-                            override fun onError(e: Exception) {
-                                TODO("Not yet implemented")
-                            }
+                    override fun onError(e: Exception) {
+                        TODO("Not yet implemented")
+                    }
 
-                        })
+                })
         }
-        binding.buttonOkhttp.setOnClickListener{
+        binding.buttonOkhttp.setOnClickListener {
             OkHttpUtil.sendOkHttpRequest("http://api.ithome.com/xml/newslist/news.xml",
-            object :OkHttpCallbackListener{
-                override fun onFinish(response: String) {
-                    showResponse(response)
-                }
-            })
+                object : OkHttpCallbackListener {
+                    override fun onFinish(response: String) {
+                        showResponse(response)
+                    }
+                })
+        }
+
+
+        binding.buttonRetrofit.setOnClickListener {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://www.wanandroid.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            //创建一个接口的动态代理对象，有了这个动态代理对象，我们可以随意调用接口中方法
+            val hotkeyService = retrofit.create(HotkeyService::class.java)
+            hotkeyService.getHotkeyData()
+                         .enqueue(object : Callback<List<HotkeyData>>{
+
+                             override fun onResponse(
+                                 call: Call<List<HotkeyData>>,
+                                 response: Response<List<HotkeyData>>
+                             ) {
+                                 val list = response.body()
+                                 if (list != null) {
+                                     for (hotkeyData in list) {
+                                         Log.d("MainActivity", "id is ${hotkeyData.id}")
+                                         Log.d("MainActivity", "name is ${hotkeyData.name}")
+                                     }
+                                 }
+                             }
+
+                             override fun onFailure(call: Call<List<HotkeyData>>, t: Throwable) {
+                                 t.printStackTrace()
+                             }
+
+                         })
+
 
         }
+
+
+
+
+
 
     }
 
