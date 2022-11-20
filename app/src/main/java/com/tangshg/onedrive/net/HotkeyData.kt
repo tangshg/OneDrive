@@ -6,7 +6,13 @@ package com.tangshg.onedrive.net
  *description: 这个类用来存放 JSON数据
  * URL: https://www.wanandroid.com//hotkey/json
  **/
-class HotkeyData (val id : Int,
-                  val name : String,
-                  val order : Int,
-                  val visible : Int)
+public class HotkeyData(val id : Int,
+                        val link : String,
+                        val name : String,
+                        val order : String,
+                        val visible : String){
+
+    override fun toString(): String {
+        return "(id=$id, link='$link', name='$name', order='$order', visible='$visible')"
+    }
+}

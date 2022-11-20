@@ -12,5 +12,5 @@ import retrofit2.http.GET
 interface HotkeyService {
 
     @GET ("hotkey/json")
-    fun getHotkeyData() : Call<List<HotkeyData>>
+    fun getHotkeyData() : Call<HotkeyDataTwo>
 }

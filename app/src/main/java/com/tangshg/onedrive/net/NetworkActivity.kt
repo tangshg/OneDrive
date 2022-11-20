@@ -31,7 +31,7 @@ class NetworkActivity : AppCompatActivity() {
             //sendRequestWithHttpURLConnection()
             //使用 Http 的网络回调接口
             HttpUtil.sendHttpRequest(
-                "http://api.ithome.com/xml/newslist/news.xml",
+                "http://192.168.10.110:8085/test",
                 object : HttpCallbackListener {
                     //这里使用的 lambda 的写法，最后参数时 lambda 表达式时
                     override fun onFinish(response: String) {
@@ -55,6 +55,9 @@ class NetworkActivity : AppCompatActivity() {
 
 
         binding.buttonRetrofit.setOnClickListener {
+
+            Log.d("NetWorkActivity","button")
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://www.wanandroid.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -62,32 +65,31 @@ class NetworkActivity : AppCompatActivity() {
 
             //创建一个接口的动态代理对象，有了这个动态代理对象，我们可以随意调用接口中方法
             val hotkeyService = retrofit.create(HotkeyService::class.java)
+
             hotkeyService.getHotkeyData()
-                         .enqueue(object : Callback<List<HotkeyData>>{
-
+                         .enqueue(object : Callback<HotkeyDataTwo>{
                              override fun onResponse(
-                                 call: Call<List<HotkeyData>>,
-                                 response: Response<List<HotkeyData>>
+                                 call: Call<HotkeyDataTwo>,
+                                 response: Response<HotkeyDataTwo>
                              ) {
-                                 val list = response.body()
-                                 if (list != null) {
-                                     for (hotkeyData in list) {
-                                         Log.d("MainActivity", "id is ${hotkeyData.id}")
-                                         Log.d("MainActivity", "name is ${hotkeyData.name}")
-                                     }
-                                 }
+                                 val hotkeyData = response.body()
+                                 Log.d("NetWorkActivity",hotkeyData.toString())
+                                 showResponse(hotkeyData)
                              }
 
-                             override fun onFailure(call: Call<List<HotkeyData>>, t: Throwable) {
-                                 t.printStackTrace()
+                             /**
+                              * Invoked when a network exception occurred talking to the server or when an unexpected
+                              * exception occurred creating the request or processing the response.
+                              */
+                             override fun onFailure(call: Call<HotkeyDataTwo>, t: Throwable) {
+                                 TODO("Not yet implemented")
                              }
+
 
                          })
 
 
         }
-
-
 
 
 
@@ -135,6 +137,11 @@ class NetworkActivity : AppCompatActivity() {
             connection.disconnect()
         }}
 
+    private fun showResponse(response: HotkeyDataTwo?){
+        runOnUiThread{
+            binding.netFrag.text = response ?. data.toString()
+        }
+    }
 
     private fun showResponse(response: String){
         runOnUiThread{
