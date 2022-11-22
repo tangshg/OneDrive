@@ -46,8 +46,6 @@ fun main(){
     for (i in data){
         println("name is ${i.id}")
     }
-
-
 }
 
 //Json 字符串举例 {“name”:”张三” ，”age”:20 }
