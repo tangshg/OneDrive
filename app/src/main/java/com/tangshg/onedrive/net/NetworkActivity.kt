@@ -84,8 +84,6 @@ class NetworkActivity : AppCompatActivity() {
                              override fun onFailure(call: Call<HotkeyDataTwo>, t: Throwable) {
                                  TODO("Not yet implemented")
                              }
-
-
                          })
 
 
