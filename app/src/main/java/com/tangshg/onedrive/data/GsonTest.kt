@@ -46,6 +46,9 @@ fun main(){
     for (i in data){
         println("name is ${i.id}")
     }
+
+    //新建一个 txt 文件
+
 }
 
 //Json 字符串举例 {“name”:”张三” ，”age”:20 }

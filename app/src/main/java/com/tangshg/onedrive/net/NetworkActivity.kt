@@ -78,7 +78,8 @@ class NetworkActivity : AppCompatActivity() {
                              }
 
                              /**
-                              * Invoked when a network exception occurred talking to the server or when an unexpected
+                              * Invoked when a network exception occurred talking
+                              * to the server or when an unexpected
                               * exception occurred creating the request or processing the response.
                               */
                              override fun onFailure(call: Call<HotkeyDataTwo>, t: Throwable) {

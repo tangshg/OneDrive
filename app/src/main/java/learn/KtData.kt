@@ -5,8 +5,8 @@ package learn
 
 //测试创建的KtData
 fun main(){
-    val phone1= KtData("mi",999.9)
-    val phone2=KtData("apple",9999.9)
+    val phone1 = KtData("mi",999.9)
+    val phone2 = KtData("apple",9999.9)
 
     println("data trust" + (phone1==phone2))
 }
