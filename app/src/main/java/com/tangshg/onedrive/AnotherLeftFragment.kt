@@ -12,7 +12,9 @@ class AnotherLeftFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_left_another,
-            container,false)
+        return inflater.inflate(
+            R.layout.fragment_left_another,
+            container, false
+        )
     }
 }

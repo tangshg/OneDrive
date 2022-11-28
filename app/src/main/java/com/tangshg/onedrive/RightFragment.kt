@@ -12,7 +12,9 @@ class RightFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_right,
-        container,false)
+        return inflater.inflate(
+            R.layout.fragment_right,
+            container, false
+        )
     }
 }

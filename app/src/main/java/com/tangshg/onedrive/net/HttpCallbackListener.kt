@@ -6,6 +6,6 @@ package com.tangshg.onedrive.net
  *description:网络回调
  **/
 interface HttpCallbackListener {
-    fun onFinish(response:String)
-    fun onError(e:Exception)
+    fun onFinish(response: String)
+    fun onError(e: Exception)
 }

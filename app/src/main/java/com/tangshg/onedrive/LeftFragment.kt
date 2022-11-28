@@ -1,7 +1,6 @@
 package com.tangshg.onedrive
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.tangshg.onedrive.databinding.FragmentLeftBinding
 
-class LeftFragment: Fragment() {
+class LeftFragment : Fragment() {
 
     /*private Context mContext;
     @Override
@@ -30,29 +29,27 @@ override fun onCreate(savedInstanceState: Bundle?) {
  */
 
 
-
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-): View? {
-    val binding = FragmentLeftBinding.inflate(inflater,container,false)
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentLeftBinding.inflate(inflater, container, false)
 
         if (activity != null) {
             val mActivity = activity as MainActivity
         }
 
-    binding.leftFragButton.setOnClickListener{
-        Toast.makeText(requireActivity(),"button",Toast.LENGTH_SHORT).show()
+        binding.leftFragButton.setOnClickListener {
+            Toast.makeText(requireActivity(), "button", Toast.LENGTH_SHORT).show()
 
+        }
+
+        return binding.root
+        //相当与 return inflater.inflate(R.layout.fragment_left,container,false)
+        //inflater.inflate 和 inflater.inflate 为何需要的参数不同
     }
-
-    return binding.root
-    //相当与 return inflater.inflate(R.layout.fragment_left,container,false)
-    //inflater.inflate 和 inflater.inflate 为何需要的参数不同
-}
-
 
 
 }

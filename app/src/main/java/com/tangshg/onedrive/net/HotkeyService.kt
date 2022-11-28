@@ -1,4 +1,5 @@
 package com.tangshg.onedrive.net
+
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -11,6 +12,6 @@ import retrofit2.http.GET
 
 interface HotkeyService {
 
-    @GET ("hotkey/json")
-    fun getHotkeyData() : Call<HotkeyDataTwo>
+    @GET("hotkey/json")
+    fun getHotkeyData(): Call<HotkeyDataTwo>
 }

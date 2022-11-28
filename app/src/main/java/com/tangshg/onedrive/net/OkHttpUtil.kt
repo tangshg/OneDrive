@@ -12,7 +12,7 @@ import kotlin.concurrent.thread
 
 object OkHttpUtil {
 
-     fun sendOkHttpRequest(url:String,listener: OkHttpCallbackListener){
+    fun sendOkHttpRequest(url: String, listener: OkHttpCallbackListener) {
 
         thread {
             val client = OkHttpClient()
@@ -21,10 +21,10 @@ object OkHttpUtil {
                 .url(url)
                 .build()
 
-            val response =  client.newCall(request).execute()
+            val response = client.newCall(request).execute()
             val responseData = response.body?.string()
 
-            if (responseData !=null ){
+            if (responseData != null) {
                 listener.onFinish(responseData)
             }
 

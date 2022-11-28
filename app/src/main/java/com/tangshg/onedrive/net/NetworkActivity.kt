@@ -2,23 +2,26 @@ package com.tangshg.onedrive.net
 
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.tangshg.onedrive.databinding.ActivityNetworkBinding
 import org.xml.sax.InputSource
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.StringReader
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.Collections.list
 import javax.xml.parsers.SAXParserFactory
 import kotlin.concurrent.thread
 
 class NetworkActivity : AppCompatActivity() {
 
-        private lateinit var binding: ActivityNetworkBinding
+    private lateinit var binding: ActivityNetworkBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,9 @@ class NetworkActivity : AppCompatActivity() {
         binding = ActivityNetworkBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
 
         binding.buttonHttp.setOnClickListener {
             //sendRequestWithHttpURLConnection()
@@ -56,7 +62,7 @@ class NetworkActivity : AppCompatActivity() {
 
         binding.buttonRetrofit.setOnClickListener {
 
-            Log.d("NetWorkActivity","button")
+            Log.d("NetWorkActivity", "button")
 
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://www.wanandroid.com/")
@@ -67,36 +73,34 @@ class NetworkActivity : AppCompatActivity() {
             val hotkeyService = retrofit.create(HotkeyService::class.java)
 
             hotkeyService.getHotkeyData()
-                         .enqueue(object : Callback<HotkeyDataTwo>{
-                             override fun onResponse(
-                                 call: Call<HotkeyDataTwo>,
-                                 response: Response<HotkeyDataTwo>
-                             ) {
-                                 val hotkeyData = response.body()
-                                 Log.d("NetWorkActivity",hotkeyData.toString())
-                                 showResponse(hotkeyData)
-                             }
+                .enqueue(object : Callback<HotkeyDataTwo> {
+                    override fun onResponse(
+                        call: Call<HotkeyDataTwo>,
+                        response: Response<HotkeyDataTwo>
+                    ) {
+                        val hotkeyData = response.body()
+                        Log.d("NetWorkActivity", hotkeyData.toString())
+                        showResponse(hotkeyData)
+                    }
 
-                             /**
-                              * Invoked when a network exception occurred talking
-                              * to the server or when an unexpected
-                              * exception occurred creating the request or processing the response.
-                              */
-                             override fun onFailure(call: Call<HotkeyDataTwo>, t: Throwable) {
-                                 TODO("Not yet implemented")
-                             }
-                         })
+                    /**
+                     * Invoked when a network exception occurred talking
+                     * to the server or when an unexpected
+                     * exception occurred creating the request or processing the response.
+                     */
+                    override fun onFailure(call: Call<HotkeyDataTwo>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+                })
 
 
         }
 
 
-
-
     }
 
     //region 这里使用 HTTP 进行网络连接
-    private fun sendRequestWithHttpURLConnection(){
+    private fun sendRequestWithHttpURLConnection() {
 
         thread {
             //1.获取 URL 对象
@@ -118,15 +122,15 @@ class NetworkActivity : AppCompatActivity() {
             //BufferedReader 这里字符处理流最大的用处是其中的 read.line()方法，可以一次读取一行数据
             val reader = BufferedReader(InputStreamReader(input))
             //读取输入流中的字符文件
-            reader.use{
-                while(true){
+            reader.use {
+                while (true) {
                     val line = reader.readLine() ?: break
                     response.append(line)
 
                     //showResponse(response)
                 }
             }
-            val s : String = response.toString()
+            val s: String = response.toString()
             parseXMLWithXML(s)
 
             val parserResult = HttpHandler()
@@ -134,22 +138,23 @@ class NetworkActivity : AppCompatActivity() {
 
             //showResponse()
             connection.disconnect()
-        }}
-
-    private fun showResponse(response: HotkeyDataTwo?){
-        runOnUiThread{
-            binding.netFrag.text = response ?. data.toString()
         }
     }
 
-    private fun showResponse(response: String){
-        runOnUiThread{
+    private fun showResponse(response: HotkeyDataTwo?) {
+        runOnUiThread {
+            binding.netFrag.text = response?.data.toString()
+        }
+    }
+
+    private fun showResponse(response: String) {
+        runOnUiThread {
             binding.netFrag.text = response
         }
     }
 
-    private fun showResponse(response: StringBuilder){
-        runOnUiThread{
+    private fun showResponse(response: StringBuilder) {
+        runOnUiThread {
             binding.netFrag.text = response
         }
     }
@@ -157,7 +162,7 @@ class NetworkActivity : AppCompatActivity() {
 
 
     //region 使用 SAX 解析XML文档
-    private fun parseXMLWithXML(xmlData: String){
+    private fun parseXMLWithXML(xmlData: String) {
 
         val factory = SAXParserFactory.newInstance()
         val xmlReader = factory.newSAXParser().xmlReader

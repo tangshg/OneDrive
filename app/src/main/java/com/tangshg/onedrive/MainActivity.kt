@@ -1,23 +1,19 @@
 package com.tangshg.onedrive
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.tangshg.onedrive.databinding.ActivityMainBinding
 import com.tangshg.onedrive.net.NetworkActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
 
         /* 原生方法加载布局
         setContentView(R.layout.activity_main)
@@ -36,58 +32,57 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonNet.setOnClickListener{
-            startActivity(Intent(this,NetworkActivity::class.java))
+        binding.buttonNet.setOnClickListener {
+            startActivity(Intent(this, NetworkActivity::class.java))
         }
 
         //region 打开 UITest 页面
-        binding.buttonUitest.setOnClickListener{
-            startActivity(Intent(this,UITest::class.java))
+        binding.buttonUitest.setOnClickListener {
+            startActivity(Intent(this, UITest::class.java))
         }
-
-
 
 
         //endregion
-        binding.button1.setOnClickListener{
-           Toast.makeText(this,"button 1",Toast.LENGTH_SHORT).show()
+        binding.button1.setOnClickListener {
+            Toast.makeText(this, "button 1", Toast.LENGTH_SHORT).show()
         }
-        binding.button2.setOnClickListener{
-            val intent : Intent = Intent(this, SecondActivity::class.java)
+        binding.button2.setOnClickListener {
+            val intent: Intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
         }
 
-        binding.button3.setOnClickListener{
-            val intent : Intent = Intent("com.example.activitytest.ACTION_START")
+        binding.button3.setOnClickListener {
+            val intent: Intent = Intent("com.example.activitytest.ACTION_START")
             startActivity(intent)
-            Toast.makeText(this,"隐式 intent " ,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "隐式 intent ", Toast.LENGTH_SHORT).show()
         }
 
-        binding.button4.setOnClickListener{
-            val intent : Intent = Intent("com.example.activitytest.ACTION_START")
+        binding.button4.setOnClickListener {
+            val intent: Intent = Intent("com.example.activitytest.ACTION_START")
             intent.addCategory("com.example.activitytest.MY_CATEGORY")
             startActivity(intent)
-            Toast.makeText(this,"log",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "log", Toast.LENGTH_SHORT).show()
         }
 
-        binding.button5.setOnClickListener{
+        binding.button5.setOnClickListener {
             //利用 intent 向下一个 activity 传递数据
-            val intent : Intent = Intent(this,SecondActivity::class.java)
-            intent.putExtra("data","data!!")
+            val intent: Intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("data", "data!!")
             startActivity(intent)
         }
 
         //先走一遍 startActivityForResult 熟悉流程
         binding.button6.setOnClickListener {
-            val intent = Intent(this,SecondActivity::class.java)
-            startActivityForResult(intent,1)
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivityForResult(intent, 1)
         }
 
         //startActivityForResult(intent,1) -> 这个方法已经 Google 废弃
         //所以使用 registerForActivityResult 来启动 Activity
-        binding.button7.setOnClickListener{
+        binding.button7.setOnClickListener {
             myActivityResultLauncher.launch(
-                Intent(this,SecondActivity::class.java))
+                Intent(this, SecondActivity::class.java)
+            )
         }
     }
 
@@ -95,10 +90,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode ){
-            1->if (resultCode== RESULT_OK){
+        when (requestCode) {
+            1 -> if (resultCode == RESULT_OK) {
                 val resultData = data?.getStringExtra("return_data")
-                Toast.makeText(this,"$resultData",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$resultData", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -110,10 +105,10 @@ class MainActivity : AppCompatActivity() {
 
     private val myActivityResultLauncher =
         registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()){
-                result->
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
             val resultData = result.data?.getStringExtra("return_data")
-            Toast.makeText(this,"$resultData",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "$resultData", Toast.LENGTH_SHORT).show()
         }
     /*resultLauncher 用来启动活动
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
@@ -143,11 +138,11 @@ class MainActivity : AppCompatActivity() {
 
     //这里注册 menu 的点击事件
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.add_item ->
-                Toast.makeText(this,"add",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "add", Toast.LENGTH_LONG).show()
             R.id.remove_item ->
-                Toast.makeText(this,"remove",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "remove", Toast.LENGTH_LONG).show()
         }
         return true
     }
