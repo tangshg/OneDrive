@@ -2,7 +2,6 @@ package com.tangshg.onedrive.net
 
 import android.os.Bundle
 import android.util.Log
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.tangshg.onedrive.databinding.ActivityNetworkBinding
 import org.xml.sax.InputSource
@@ -30,9 +29,6 @@ class NetworkActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-
         binding.buttonHttp.setOnClickListener {
             //sendRequestWithHttpURLConnection()
             //使用 Http 的网络回调接口
@@ -49,9 +45,12 @@ class NetworkActivity : AppCompatActivity() {
                     }
 
                 })
+
+            //https://weibo.com/ajax/side/hotSearch
+            //http://api.ithome.com/xml/newslist/news.xml
         }
         binding.buttonOkhttp.setOnClickListener {
-            OkHttpUtil.sendOkHttpRequest("http://api.ithome.com/xml/newslist/news.xml",
+            OkHttpUtil.sendOkHttpRequest("https://weibo.com/ajax/side/hotSearch",
                 object : OkHttpCallbackListener {
                     override fun onFinish(response: String) {
                         showResponse(response)
